@@ -4,55 +4,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assign3
+namespace Assignment4
 {
-    class TicketException : ApplicationException
+    class Cricket
     {
-        public TicketException(string msg) : base(msg)
+        int sum = 0, Avg;
+        public void PointsCalculation(int no_of_matches)
         {
-
+            int[] score = new int[10];
+            for (int i = 0; i < no_of_matches; i++)
+            {
+                Console.WriteLine("Enter  Match {0} Score", i + 1);
+                score[i] = Convert.ToInt32(Console.ReadLine());
+                sum += score[i];
+            }
+            Avg = sum / no_of_matches;
+            Console.WriteLine("Sum of the Scores:{0}\nAverage of the Scores:{1}", sum, Avg);
         }
     }
-    class Ticket
-    {
-        string name;
-        int age;
-        int ticket;
-        public void TicketBooking()
-        {
-            Console.WriteLine("ENter the name of the person:");
-            name = Console.ReadLine();
-
-            Console.WriteLine("ENter the age of the person:");
-            age = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("ENter no of Tickets to be booked:");
-            if (ticket > 2)
-            {
-                throw (new TicketException("Cannot book more than 2 tickets."));
-            }
-            else
-            {
-                Console.WriteLine("Ticket Booked Successfully");
-            }
-
-        }
-    }
-    class Assignment3
+    class Program
     {
         static void Main(string[] args)
         {
-            Ticket t = new Ticket();
-            try
-            {
-                t.TicketBooking();
-            }
-            catch (TicketException te)
-            {
-                Console.WriteLine(te.Message + " " + te.Source);
-            }
-            Console.ReadLine();
+            int n;
+            Cricket c = new Cricket();
+            Console.WriteLine("Enter No Of Matches");
+            n = Convert.ToInt32(Console.ReadLine());
+            c.PointsCalculation(n);
+
         }
     }
 }
 
+    
 
